@@ -36,17 +36,44 @@
                         <span id="counter">0</span>
                     </li>
                 </div>
-              </ul>
+            </ul>
         </div>
-    
+
         <div id="start_page">
             <h1>Take the Quiz</h1>
             <button id="start_button">Start Quiz</button>
         </div>
         <div id="quiz_area">
-    
+
+        </div>
+        <div id="score_screen" class="hidden">
+            <div class="row">
+                <div class="offset-3 col-md-6">
+                    <h1>All Done!</h1>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-3 col-md-6">
+                    <h2 id="final_score"></h2>
+                    <br>
+                </div>
+            </div>
+            <div class="row">
+                <div class="offset-4 col-md-1">
+                    <h3>Enter Initials</h3>
+                </div>
+                <div class="col-md-2">
+                    <input type="text" class="form-control" aria-label="Sizing example input"
+                        aria-describedby="inputGroup-sizing-default" id="inInput" />
+
+                </div>
+                <div class="col-md-1">
+                    <input class="btn btn-primary btn-sm" type="submit" value="Submit" id="submit_button">
+                </div>
+            </div>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 

@@ -2,28 +2,42 @@ var startBtn = document.querySelector("#start_button")
 var home = document.querySelector("#start_page")
 var targetDiv = document.querySelector("#quiz_area")
 var counter = document.querySelector("#counter")
+var endScreen = document.querySelector("#score_screen")
+var endScore = document.querySelector("#final_score")
+var nameInput = document.querySelector("#inInput")
+var submitBtn = document.querySelector("#submit_button")
 
 
 var quiz1 = [
     {
-      title: "The Awnser to this Question is Correct:",
+      title: "The Awnser to this Question is Correct",
       choices: ["Correct", "False", "Wrong", "Almost True"],
       answer: "Correct"
     },
     {
-      title: "The Awnser to this Question is Blue:",
+      title: "The Awnser to this Question is Blue",
       choices: ["Red", "Blue", "Green", "Yellow"],
       answer: "Blue"
     },
     {
-      title: "The Awnser to this Question is 5:",
+      title: "The Awnser to this Question is 5",
       choices: ["23", "4", "-100", "5"],
       answer: "5"
     },
     {
-      title: "The Awnser to this Question is Hot:",
-      choices: ["Hot", "Cold", "Warm", "Emma Watson"],
-      answer: "Hot"
+      title: "Which of these is the Hottest?",
+      choices: ["Lava", "The Sun", "Sand on the Beach", "Emma Watson"],
+      answer: "Emma Watson"
+    },
+    {
+      title: "The Awnser to this Question is number 3",
+      choices: ["nope", "warmer", "This one", "colder"],
+      answer: "This one"
+    },
+    {
+      title: "Which of these is Heavier?",
+      choices: ["A pound of Feathers", "A pound of steel", "A British pound", "That Pound cake that Grandma always brings to Thanksgiving"],
+      answer: "That Pound cake that Grandma always brings to Thanksgiving"
     },
   ];
 
@@ -31,13 +45,12 @@ startBtn.addEventListener("click", function(e) {
     e.preventDefault();
     home.setAttribute("class", "hidden")
     var index = 0;
-    var score = 0;
-    var secondsLeft = 10;
+    var secondsLeft = 50;
     var timerInterval = setInterval(function() {
         counter.textContent = secondsLeft;
         secondsLeft--;
     
-        if(secondsLeft === 0) {
+        if(secondsLeft <= 0) {
             index = 100;
             nextquestion();
         }
@@ -49,10 +62,12 @@ startBtn.addEventListener("click", function(e) {
         targetDiv.innerHTML = "";
 
         if (index >= quiz1.length) {
-            home.setAttribute("class", "");
             clearInterval(timerInterval);
+            counter.textContent = secondsLeft;
+            scoreScreen();
             return;
         }
+
         console.log(`Question Number ${index + 1}`)
         var title = quiz1[index].title;
         var questHead = document.createElement("h1");
@@ -80,15 +95,28 @@ startBtn.addEventListener("click", function(e) {
         if (event.target.matches("button")) {
             var awnser = event.target.getAttribute("data-index");
             console.log(`You guessed ${awnser}! The Correct response was ${quiz1[index].answer}!`);
-            if (awnser === quiz1[index].answer) {
-                score++
+            if (awnser !== quiz1[index].answer) {
+                secondsLeft-=5;
             }
             index++
             nextquestion();
         }
     });
-    
 
-    console.log(score)
-    
+    function scoreScreen() {
+
+        endScore.textContent = (`Your Final Score: ${secondsLeft}`);
+
+        endScreen.setAttribute("class", "");
+        
+        submitBtn.addEventListener("click", function(event) {
+            event.preventDefault;
+            console.log("Yay!");
+            home.setAttribute("class", "");
+            endScreen.setAttribute("class", "hidden");
+            
+        })
+
+    }
+
 });
