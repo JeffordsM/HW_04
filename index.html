@@ -27,7 +27,7 @@
             <ul class="nav">
                 <div class="col-md-3">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">Leaderboard</a>
+                        <button type="button" class="btn btn-info btn-sm" id="leaderboard_button">Leaderboard</button>
                     </li>
                 </div>
                 <div class="offset-6 col-md-3">
@@ -43,9 +43,7 @@
             <h1>Take the Quiz</h1>
             <button id="start_button">Start Quiz</button>
         </div>
-        <div id="quiz_area">
-
-        </div>
+        <div id="quiz_area"></div>
         <div id="score_screen" class="hidden">
             <div class="row">
                 <div class="offset-3 col-md-6">
@@ -72,9 +70,45 @@
                 </div>
             </div>
         </div>
-    </div>
+        <div id="leader_board" class="hidden">
+            <div class="card text-white bg-info mb-3" style="max-width: 20rem;">
+                <div class="card-header">Leaderboard
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close" id="close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Player</th>
+                                    <th scope="col">Score</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row" style="color: gold;">1</th>
+                                    <td id="player1">!!!</td>
+                                    <td id="score1">###</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="color: silver;">2</th>
+                                    <td id="player2">!!!</td>
+                                    <td id="score2">###</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row" style="color: chocolate;">3</th>
+                                    <td id="player3">!!!</td>
+                                    <td id="score3">###</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <script src="script.js"></script>
+        <script src="script.js"></script>
 </body>
 
 </html>

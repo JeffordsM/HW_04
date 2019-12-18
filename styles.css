@@ -10,3 +10,14 @@ body {
 h3 {
     font-size: inherit;
 }
+#leaderboard_button {
+    position: relative;
+    top: 15px;
+}
+#leader_board {
+    width: 20rem;
+    z-index: 500;
+    position: absolute;
+    left: 38.5%;
+    top: 70px;
+}
