@@ -16,31 +16,31 @@ var quiz1 = [
         choices: ["Correct", "False", "Wrong", "Almost True"],
         answer: "Correct"
     },
-    {
-        title: "The Awnser to this Question is Blue",
-        choices: ["Red", "Blue", "Green", "Yellow"],
-        answer: "Blue"
-    },
-    {
-        title: "The Awnser to this Question is 5",
-        choices: ["23", "4", "-100", "5"],
-        answer: "5"
-    },
-    {
-        title: "Which of these is the Hottest?",
-        choices: ["Lava", "The Sun", "Sand on the Beach", "Emma Watson"],
-        answer: "Emma Watson"
-    },
-    {
-        title: "The Awnser to this Question is number 3",
-        choices: ["nope", "warmer", "This one", "colder"],
-        answer: "This one"
-    },
-    {
-        title: "Which of these is Heavier?",
-        choices: ["A pound of Feathers", "A pound of steel", "A British pound", "That Pound cake that Grandma always brings to Thanksgiving"],
-        answer: "That Pound cake that Grandma always brings to Thanksgiving"
-    },
+    // {
+    //     title: "The Awnser to this Question is Blue",
+    //     choices: ["Red", "Blue", "Green", "Yellow"],
+    //     answer: "Blue"
+    // },
+    // {
+    //     title: "The Awnser to this Question is 5",
+    //     choices: ["23", "4", "-100", "5"],
+    //     answer: "5"
+    // },
+    // {
+    //     title: "Which of these is the Hottest?",
+    //     choices: ["Lava", "The Sun", "Sand on the Beach", "Emma Watson"],
+    //     answer: "Emma Watson"
+    // },
+    // {
+    //     title: "The Awnser to this Question is number 3",
+    //     choices: ["nope", "warmer", "This one", "colder"],
+    //     answer: "This one"
+    // },
+    // {
+    //     title: "Which of these is Heavier?",
+    //     choices: ["A pound of Feathers", "A pound of steel", "A British pound", "That Pound cake that Grandma always brings to Thanksgiving"],
+    //     answer: "That Pound cake that Grandma always brings to Thanksgiving"
+    // },
 ];
 
 var highScores = [];
@@ -122,9 +122,9 @@ startBtn.addEventListener("click", function (e) {
         submitBtn.addEventListener("click", function (event) {
             event.preventDefault;
 
-            function score(playerIN, playerScore) {
-                this.playerIN = playerIN;
-                this.playerScore = playerScore;
+            function score(x, y) {
+                this.playerIN = x;
+                this.playerScore = y;
             }
             
             Score = new score(nameInput.value.trim(), finalScore);
