@@ -18,6 +18,9 @@ h3 {
     width: 20rem;
     z-index: 500;
     position: absolute;
-    left: 38.5%;
-    top: 70px;
+    left: 5%;
+    top: 90px;
+}
+.table {
+    color: #ffffff
 }

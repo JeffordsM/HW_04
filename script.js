@@ -16,41 +16,45 @@ var quiz1 = [
         choices: ["Correct", "False", "Wrong", "Almost True"],
         answer: "Correct"
     },
-    // {
-    //     title: "The Awnser to this Question is Blue",
-    //     choices: ["Red", "Blue", "Green", "Yellow"],
-    //     answer: "Blue"
-    // },
-    // {
-    //     title: "The Awnser to this Question is 5",
-    //     choices: ["23", "4", "-100", "5"],
-    //     answer: "5"
-    // },
-    // {
-    //     title: "Which of these is the Hottest?",
-    //     choices: ["Lava", "The Sun", "Sand on the Beach", "Emma Watson"],
-    //     answer: "Emma Watson"
-    // },
-    // {
-    //     title: "The Awnser to this Question is number 3",
-    //     choices: ["nope", "warmer", "This one", "colder"],
-    //     answer: "This one"
-    // },
-    // {
-    //     title: "Which of these is Heavier?",
-    //     choices: ["A pound of Feathers", "A pound of steel", "A British pound", "That Pound cake that Grandma always brings to Thanksgiving"],
-    //     answer: "That Pound cake that Grandma always brings to Thanksgiving"
-    // },
+    {
+        title: "The Awnser to this Question is Blue",
+        choices: ["Red", "Blue", "Green", "Yellow"],
+        answer: "Blue"
+    },
+    {
+        title: "The Awnser to this Question is 5",
+        choices: ["23", "4", "-100", "5"],
+        answer: "5"
+    },
+    {
+        title: "Which of these is the Hottest?",
+        choices: ["Lava", "The Sun", "Sand on the Beach", "Emma Watson"],
+        answer: "Emma Watson"
+    },
+    {
+        title: "The Awnser to this Question is number 3",
+        choices: ["nope", "warmer", "This one", "colder"],
+        answer: "This one"
+    },
+    {
+        title: "Which of these is Heavier?",
+        choices: ["A pound of Feathers", "A pound of steel", "A British pound", "That Pound cake that Grandma always brings to Thanksgiving"],
+        answer: "That Pound cake that Grandma always brings to Thanksgiving"
+    },
 ];
 
-var highScores = [];
+var highScores;
+var finalScore = ""
+
+highScores = JSON.parse(localStorage.getItem("highscore")) || [];
+
 
 startBtn.addEventListener("click", function (e) {
 
     e.preventDefault();
     home.setAttribute("class", "hidden")
     var index = 0;
-    var finalScore = ""
+
     var secondsLeft = 50.0;
     var timerInterval = setInterval(function () {
         counter.textContent = secondsLeft.toFixed(1);
@@ -61,6 +65,7 @@ startBtn.addEventListener("click", function (e) {
             nextquestion();
         }
     }, 100);
+
     nextquestion();
 
     function nextquestion() {
@@ -117,51 +122,27 @@ startBtn.addEventListener("click", function (e) {
 
         endScreen.setAttribute("class", "");
 
-        var Score = ""
+    };
 
-        submitBtn.addEventListener("click", function (event) {
-            event.preventDefault;
 
-            function score(x, y) {
-                this.playerIN = x;
-                this.playerScore = y;
-            }
-            
-            Score = new score(nameInput.value.trim(), finalScore);
+});
 
-            if (Score.playerIN === "") {
-                return;
-            }
-            if (Score.playerScore === "") {
-                return;
-            }
-
-            save();
-        });
-
-        function save() {
-
-            highScores.push(Score);
-
-            store();
-            
-            home.setAttribute("class", "");
-            endScreen.setAttribute("class", "hidden");
-            
-        }
-        
-        
-        function store() {
-
-            console.log(highScores);
-            
-            localStorage.setItem("highscore", JSON.stringify(highScores));
-            // sortScores();
-        }
-
+submitBtn.addEventListener("click", function (event) {
+    event.preventDefault();
+    event.stopPropagation();
+    var newScore = {
+        name: nameInput.value.trim(),
+        score: parseFloat(finalScore)
     }
+    highScores.push(newScore)
+    console.log(highScores)
+    localStorage.setItem("highscore", JSON.stringify(highScores));
+    nameInput.value = "";
 
+    sortScores();
 
+    home.setAttribute("class", "");
+    endScreen.setAttribute("class", "hidden");
 });
 
 var player1 = document.querySelector("#player1")
@@ -173,20 +154,41 @@ var score3 = document.querySelector("#score3")
 
 var mode = "hidden"
 
-// function sortScores() {
-//     highScores.sort(function (a, b) {
-//         return a.playerScore - b.playerScore;
-//     });
-//     console.log(highScores)
-// }
+function sortScores() {
+    highScores.sort(function (a, b) {
+        return b.score - a.score;
+    });
+    console.log(highScores);
+    rank();
+}
+
+function rank() {
+    if (highScores.length < 0) {
+        return;
+    }
+    player1.textContent = highScores[0].name
+    score1.textContent = highScores[0].score
+    if (highScores.length < 1) {
+        return;
+    }
+    player2.textContent = highScores[1].name
+    score2.textContent = highScores[1].score
+    if (highScores.length < 2) {
+        return;
+    }
+    player3.textContent = highScores[2].name
+    score3.textContent = highScores[2].score
+
+}
 
 
 leaderBoardBtn.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("yay!");
+    // console.log("yay!");
     if (mode === "hidden") {
         mode = "shown"
         leaderBoard.setAttribute("class", "");
+        sortScores();
     }
     else {
         mode = "hidden"
@@ -196,7 +198,7 @@ leaderBoardBtn.addEventListener("click", function (e) {
 
 closeBtn.addEventListener("click", function (e) {
     e.preventDefault;
-    console.log("Boo!");
+    // console.log("Boo!");
     leaderBoard.setAttribute("class", "hidden");
     if (mode === "hidden") {
         mode = "shown"
