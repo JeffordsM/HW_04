@@ -139,10 +139,10 @@ submitBtn.addEventListener("click", function (event) {
     localStorage.setItem("highscore", JSON.stringify(highScores));
     nameInput.value = "";
 
-    sortScores();
-
     home.setAttribute("class", "");
     endScreen.setAttribute("class", "hidden");
+
+    sortScores();
 });
 
 var player1 = document.querySelector("#player1")
@@ -166,16 +166,20 @@ function rank() {
     if (highScores.length < 0) {
         return;
     }
-    player1.textContent = highScores[0].name
-    score1.textContent = highScores[0].score
+
+    player1.textContent = highScores[0].name;
+    score1.textContent = highScores[0].score;
+
     if (highScores.length < 1) {
         return;
     }
+
     player2.textContent = highScores[1].name
     score2.textContent = highScores[1].score
     if (highScores.length < 2) {
         return;
     }
+
     player3.textContent = highScores[2].name
     score3.textContent = highScores[2].score
 
